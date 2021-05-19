@@ -18,12 +18,13 @@ const MealsNavigator = createStackNavigator(
     MealDetails: MealDetailScreen,
   },
   {
+    // mode: 'modal',
     // initialRouteKey: 'MealDetails',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: Platform.OS === 'ios' ? Colors.primary : '#ff7b54',
+        backgroundColor: Platform.OS === 'ios' ? 'white' : '#02475e',
       },
-      headerTintColor: 'white',
+      headerTintColor: Platform.OS === 'ios' ? '#511281' : 'white',
     },
   }
 );
