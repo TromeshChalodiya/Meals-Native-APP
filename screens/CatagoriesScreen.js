@@ -9,13 +9,15 @@ import {
 } from 'react-native';
 
 import { CATEGORIES } from '../data/dummy-data';
-import Colors from '../constants/color';
+import CategoryGridTile from '../components/CategoryGridTile';
 
 const CatagoriesScreen = (props) => {
   const renderGriditem = (itemData) => {
     return (
-      <TouchableOpacity
-        onPress={() => {
+      <CategoryGridTile
+        title={itemData.item.title}
+        color={itemData.item.color}
+        onSelect={() => {
           props.navigation.navigate({
             routeName: 'CatagoryMeals',
             params: {
@@ -23,12 +25,7 @@ const CatagoriesScreen = (props) => {
             },
           });
         }}
-        style={styles.gridItem}
-      >
-        <View>
-          <Text>{itemData.item.title}</Text>
-        </View>
-      </TouchableOpacity>
+      />
     );
   };
 
