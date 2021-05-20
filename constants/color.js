@@ -1,4 +1,5 @@
 export default {
-  primary: '#766161',
+  primary: '#511281',
   accentColor: '#ff6f00',
+  activeTab: '#f5a442',
 };
