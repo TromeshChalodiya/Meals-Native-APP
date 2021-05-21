@@ -3,12 +3,14 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import CustomHeaderButton from '../components/HeaderButton';
+import { MEALS } from '../data/dummy-meal-data';
 
 const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam('mealId');
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   return (
     <View style={styles.screen}>
-      <Text>{mealId.title}</Text>
+      <Text>{selectedMeal.title}</Text>
       <Button
         title='Go Back to Catagories'
         onPress={() => {
@@ -21,9 +23,9 @@ const MealDetailScreen = (props) => {
 
 MealDetailScreen.navigationOptions = (navigationData) => {
   const mealId = navigationData.navigation.getParam('mealId');
-
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   return {
-    headerTitle: mealId.title,
+    headerTitle: selectedMeal.title,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
