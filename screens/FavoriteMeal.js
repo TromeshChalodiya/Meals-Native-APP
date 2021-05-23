@@ -1,8 +1,7 @@
 import React from 'react';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import MealList from '../components/MealList';
-import HeaderButton from '../components/HeaderButton';
+import MenuDrawer from '../components/MenuDrawer';
 import { MEALS } from '../data/dummy-meal-data';
 
 const FavoriteScreen = (props) => {
@@ -14,17 +13,7 @@ const FavoriteScreen = (props) => {
 FavoriteScreen.navigationOptions = (navData) => {
   return {
     headerTitle: 'Your Favorites',
-    headerLeft: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title='Menu'
-          iconName='ios-menu'
-          onPress={() => {
-            navData.navigation.toggleDrawer();
-          }}
-        />
-      </HeaderButtons>
-    ),
+    headerLeft: () => <MenuDrawer navData={navData} iconName='ios-menu' />,
   };
 };
 
