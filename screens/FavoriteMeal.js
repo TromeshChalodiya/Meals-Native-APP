@@ -1,6 +1,7 @@
 import React from 'react';
 
 import MealList from '../components/MealList';
+import MenuDrawer from '../components/MenuDrawer';
 import { MEALS } from '../data/dummy-meal-data';
 
 const FavoriteScreen = (props) => {
@@ -9,8 +10,11 @@ const FavoriteScreen = (props) => {
   return <MealList listData={favMeals} navigation={props.navigation} />;
 };
 
-FavoriteScreen.navigationOptions = {
-  headerTitle: 'Your Favorites',
+FavoriteScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'Your Favorites',
+    headerLeft: () => <MenuDrawer navData={navData} iconName='ios-menu' />,
+  };
 };
 
 export default FavoriteScreen;

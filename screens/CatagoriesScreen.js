@@ -3,6 +3,7 @@ import { StyleSheet, FlatList } from 'react-native';
 
 import { CATEGORIES } from '../data/dummy-categoty-data';
 import CategoryGridTile from '../components/CategoryGridTile';
+import MenuDrawer from '../components/MenuDrawer';
 
 const CatagoriesScreen = (props) => {
   const renderGriditem = (itemData) => {
@@ -32,8 +33,11 @@ const CatagoriesScreen = (props) => {
   );
 };
 
-CatagoriesScreen.navigationOptions = {
-  headerTitle: 'Meal Catagories',
+CatagoriesScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'Meal Catagories',
+    headerLeft: () => <MenuDrawer navData={navData} iconName='ios-menu' />,
+  };
 };
 
 const styles = StyleSheet.create({
