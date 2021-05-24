@@ -19,7 +19,9 @@ const MealDetailScreen = (props) => {
 
   const availableMeals = useSelector((state) => state.meals.filteredMeals);
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
-
+  const isCurrentMealFav = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === mealId)
+  );
   const dispatch = useDispatch();
 
   const toggleFavoriteHandler = useCallback(() => {
@@ -29,6 +31,10 @@ const MealDetailScreen = (props) => {
   useEffect(() => {
     props.navigation.setParams({ toggleFav: toggleFavoriteHandler });
   }, [toggleFavoriteHandler]);
+
+  useEffect(() => {
+    props.navigation.setParams({ isFav: isCurrentMealFav });
+  }, [isCurrentMealFav]);
 
   // Not an ideal solution as useEffect trigger after the component is render
   // and that is creating a delay while loading headerTitle
@@ -60,12 +66,17 @@ MealDetailScreen.navigationOptions = (navigationData) => {
   const mealTitle = navigationData.navigation.getParam('mealTitle');
 
   const toggleFavorite = navigationData.navigation.getParam('toggleFav');
-  debugger;
+  const isFavMeals = navigationData.navigation.getParam('isFav');
+
   return {
     headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item title='Favorite' iconName='ios-star' onPress={toggleFavorite} />
+        <Item
+          title='Favorite'
+          iconName={isFavMeals ? 'ios-star' : 'ios-star-outline'}
+          onPress={toggleFavorite}
+        />
       </HeaderButtons>
     ),
   };
